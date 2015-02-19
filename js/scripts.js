@@ -1,7 +1,11 @@
 $(document).ready(function() {
   $("#add-address").click(function() {
 
-    $("#new-addresses").append('<div class="new-address">' +
+    $("#new-addresses").append('<hr><div class="new-address">' +
+                                  '<div class="form-group">' +
+                                  '<label for="address-category">Address Category</label>' +
+                                  '<input type="text" class="form-control address-category" placeholder="eg. home, work, etc.">' +
+                                  '</div>' +
                                   '<div class="form-group">' +
                                       '<label for="new-street">Street</label>' +
                                       '<input type="text" class="form-control new-street">' +
@@ -31,12 +35,13 @@ $(document).ready(function() {
                       lastName: inputLastName, addresses: [] };
 
     $(".new-address").each(function() {
+      var inputtedCategory = $(this).find("input.address-category").val();
       var inputtedStreet = $(this).find("input.new-street").val();
       var inputtedCity = $(this).find("input.new-city").val();
       var inputtedState = $(this).find("input.new-state").val();
       var inputtedZip = $(this).find("input.new-zip").val();
 
-      var newAddress = { street: inputtedStreet, city: inputtedCity, state: inputtedState, zip: inputtedZip };
+      var newAddress = { addressCategory: inputtedCategory,  street: inputtedStreet, city: inputtedCity, state: inputtedState, zip: inputtedZip };
       newContact.addresses.push(newAddress);
     });
 
@@ -62,7 +67,7 @@ $(document).ready(function() {
       $("ul#addresses").text("");
 
       newContact.addresses.forEach(function(address) {
-        $("ul#addresses").append("<li>" + address.street + ", " +
+        $("ul#addresses").append("<li>" + address.addressCategory + ": "+ address.street + ", " +
         address.city + ", " + address.state + " " + address.zip + "</li>");
       });
 
