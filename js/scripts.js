@@ -67,7 +67,7 @@ $(document).ready(function() {
       $("ul#addresses").text("");
 
       newContact.addresses.forEach(function(address) {
-        $("ul#addresses").append("<li>" + address.addressCategory + ": "+ address.street + ", " +
+        $("ul#addresses").append("<li>" + "<strong>" + address.addressCategory + "</strong>" + ": "+ address.street + ", " +
         address.city + ", " + address.state + " " + address.zip + "</li>");
       });
 
